@@ -4,21 +4,15 @@ import { Environment,OrbitControls } from '@react-three/drei';
 import { Suspense } from 'react';
 import Slider from "./MovieData/Slider"
 import Movie from "./MovieData/Movie"
-import { useState,useEffect } from "react";
 import axios from 'axios';
+import { useQuery } from 'react-query';
 function Three({movie,searchfield,setsearchfield}) {
-  const [data,setdata]=useState({});
-  useEffect(() => {
-    axios("https://api.themoviedb.org/3/trending/movie/week?api_key=84bd2ca964c1790070846809a1b4300b")
-    .then((res)=>{
-        setdata(res.data.results);
-    })
-    .catch((err)=>{
-        console.log(err);
-    })
-   }, [])
+  const{isLoading,data}=useQuery("Super Heros",()=>{
+    return axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=84bd2ca964c1790070846809a1b4300b&language=en-US&page=1`)
+   })
+  
 
-
+ 
   return (
     <div onClick={()=>{if(searchfield){setsearchfield(false)};}}>
         <Canvas style={{width:"100%",height:"100vh",position:"absolute",top:"0px",left:"0px",zIndex:"-1"}}>
@@ -33,7 +27,7 @@ function Three({movie,searchfield,setsearchfield}) {
              />
              <ambientLight />
         <pointLight position={[10, 10, 10]} />
-             {movie?(<Movie data={movie}/>):(<Slider  data={data}/>)}
+             {movie?(<Movie data={movie}/>): !isLoading?(<Slider  data={data.data.results}/>):null}
         </Suspense>
     </Canvas>
     </div>
