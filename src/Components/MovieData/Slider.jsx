@@ -19,7 +19,7 @@ function Slider({data,setmovie}) {
   let timer=0
   useFrame((state, delta) => {mesh.current.rotation.y += 0.005;timer++;if(timer===400){TextureChange();timer=0;}})
     return (
-        <mesh ref={mesh} onClick={()=>{setmovie(data[count]);console.log("ok");}} position={[0,1,-4]}>
+        <mesh ref={mesh}  position={[0,1,-4]}>
       <boxGeometry args={[7, 5, 7]} />
       <meshStandardMaterial   map={colorMap}/>
     </mesh>

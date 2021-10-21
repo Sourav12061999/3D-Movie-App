@@ -1,5 +1,5 @@
 import React from 'react'
-
+import "../../CSS/movieText.css"
 function Singlemovie({movie}) {
     return (
         <div className="movie">
