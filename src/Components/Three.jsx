@@ -6,7 +6,7 @@ import Slider from "./MovieData/Slider"
 import Movie from "./MovieData/Movie"
 import axios from 'axios';
 import { useQuery } from 'react-query';
-function Three({movie,searchfield,setsearchfield}) {
+function Three({movie,searchfield,setsearchfield,setmovie}) {
   const{isLoading,data}=useQuery("Super Heros",()=>{
     return axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=84bd2ca964c1790070846809a1b4300b&language=en-US&page=1`)
    })
@@ -27,7 +27,7 @@ function Three({movie,searchfield,setsearchfield}) {
              />
              <ambientLight />
         <pointLight position={[10, 10, 10]} />
-             {movie?(<Movie data={movie}/>): !isLoading?(<Slider  data={data.data.results}/>):null}
+             {movie?(<Movie data={movie}/>): !isLoading?(<Slider  data={data.data.results} setmovie={setmovie}/>):null}
         </Suspense>
     </Canvas>
     </div>

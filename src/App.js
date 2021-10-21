@@ -1,5 +1,6 @@
 import Three from "./Components/Three";
 import Header from "./Components/MovieData/Header";
+import Singlemovie from "./Components/MovieData/Singlemovie";
 import { useState } from "react";
 import { QueryClientProvider } from "react-query";
 import { QueryClient } from "react-query";
@@ -14,12 +15,14 @@ function App() {
         movie={movie}
         searchfield={searchfield}
         setsearchfield={setsearchfield}
+        setmovie={setmovie}
       />
       <Header
         searchfield={searchfield}
         setsearchfield={setsearchfield}
         setmovie={setmovie}
       />
+      {movie ? <Singlemovie movie={movie} /> : null}
       <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
     </QueryClientProvider>
   );

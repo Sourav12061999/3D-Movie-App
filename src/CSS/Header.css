@@ -9,7 +9,8 @@ nav {
   height: 70px;
   /* box-shadow: 2px 2px 2px 2px rgb(211, 209, 209); */
   display: flex;
-  position: fixed;
+  /* position: fixed; */
+  margin-bottom: 20px;
 }
 .logo {
   width: 30%;
